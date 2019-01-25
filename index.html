@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>WaveShaperNode Curve Generator - cubic bezier</title>
+    <style>
+        *{font-family:monospace}
+        input[type='number']{width:5em}
+        #info{color:white;background:magenta}
+        textarea{position:relative;bottom:0;min-width:50%;min-height:10em}
+        svg{background:orange}
+    </style>
+    <script src=audio.js></script>
+    <script src=curve.js></script>
+    <script src=main.js></script>
+</head>
+
+<body>
+    <input type="number" id="outputSampleRate" value=65536>samples
+    <span id="info">　</span>
+    <div id="container"></div>
+    <textarea id="outputTextArea"></textarea>
+    <br>
+    <pre>
+const waveShaper = audioCtx.createWaveShaper();
+waveShaper.curve = curve;
+</pre>
+</body>
+
+</html>
