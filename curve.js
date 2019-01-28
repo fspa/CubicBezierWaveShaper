@@ -57,11 +57,12 @@ function createText(plane) {
 
 function codeContainer() {
 const curve = (function () {
+    const p = $0, ns = $1;
     function cubicBezier(t, p0, p1, p2, p3) {
         let ost = 1 - t;
         return ost * ost * ost * p0 + 3 * ost * ost * t * p1 + 3 * ost * t * t * p2 + t * t * t * p3;
     }
-    function createBezierPoints(p = $0, numSamples = 2 ** 17) {
+    function createBezierPoints(p, numSamples = 2 ** 17) {
         let curvePoints = [];
         for (let i = 0, a = ((numSamples - 1) / 2); i < numSamples; i++) {
             let t = i / a - 1;
@@ -71,7 +72,7 @@ const curve = (function () {
         }
         return curvePoints;
     }
-    function createEqualSpacePoints(cp, numSamples = $1) {
+    function createEqualSpacePoints(cp, numSamples) {
         let output = new Float32Array(numSamples);
         for (let i = 0, a = ((numSamples - 1) / 2), cpIndex = 1; i < numSamples; i++) {
             let x = i / a - 1;
@@ -82,7 +83,7 @@ const curve = (function () {
         }
         return output;
     }
-    let curvePoints = createBezierPoints();
-    return createEqualSpacePoints(curvePoints);
+    let curvePoints = createBezierPoints(p);
+    return createEqualSpacePoints(curvePoints,ns);
     })();
 }
